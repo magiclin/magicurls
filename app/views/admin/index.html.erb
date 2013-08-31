@@ -1,2 +1,12 @@
-<h1>Admin#index</h1>
-<p>Find me in app/views/admin/index.html.erb</p>
+
+<% @categories.each do |category| %>
+
+    <br />
+    <b><%= link_to "#{category.name}", :action => 'show', :id => category %></b>
+    <b><%= category.urls.size %></b>
+
+<% end %>
+
+
+<br />
+

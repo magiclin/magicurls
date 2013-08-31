@@ -1,6 +1,9 @@
 Magicurls::Application.routes.draw do
   root :to => 'admin#index'
+
   get "admin/index"
+
+  match "admin/show/:id" => 'admin#show'
 
   match "admin/login" => 'admin#login'
 

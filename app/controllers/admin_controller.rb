@@ -1,7 +1,13 @@
 class AdminController < ApplicationController
   def index
+    @categories = Category.find :all
   end
 
+  def show
+    @category = Category.find(params[:id])
+    @urls = @category.urls
+  end
+  
   def login
     if request.post?
       user = User.find_by_name(params[:name])
@@ -18,5 +24,9 @@ class AdminController < ApplicationController
   def logout
     session[:user_id] = nil if session[:user_id]
     redirect_to :action => 'login'
+  end
+
+private
+  def authorize
   end
 end
