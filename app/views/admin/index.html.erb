@@ -2,11 +2,14 @@
 <% @categories.each do |category| %>
 
     <br />
-    <b><%= link_to "#{category.name}", :action => 'show', :id => category %></b>
-    <b><%= category.urls.size %></b>
+    <b><%= link_to "#{category.name}", category_path(category) %></b>
+    <b><%= category.sum %></b>
+    <br />
+
+    <% category.urls.each do |url| %>
+    <%= link_to "#{url.name}", url_path(url) %>
+    <% end %>
 
 <% end %>
-
-
 <br />
 

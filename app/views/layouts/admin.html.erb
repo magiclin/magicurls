@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Magicurls</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <a href="http://localhost:3000/urls">New URL</a><br />
+  <a href="http://localhost:3000/categories/new">New Categorie</a><br />
+  <a href="http://localhost:3000">Admin</a><br />
+  <a href="http://localhost:3000/admin/logout">Logout</a><br />
+  <hr />
+
+<%= yield %>
+
+</body>
+</html>

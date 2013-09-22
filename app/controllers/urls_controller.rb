@@ -4,6 +4,7 @@ class UrlsController < ApplicationController
   def index
     @urls = Url.all
 
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @urls }
@@ -25,7 +26,13 @@ class UrlsController < ApplicationController
   # GET /urls/new.json
   def new
     @url = Url.new
-
+    cates = Category.find(:all)
+    @categories = []
+    cates.each do |c|
+      @categories << c.name
+    end
+    
+ 
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @url }
@@ -40,10 +47,14 @@ class UrlsController < ApplicationController
   # POST /urls
   # POST /urls.json
   def create
+    @category = Category.find_by_name(params[:url][:category])
+    params[:url].delete(:category)
     @url = Url.new(params[:url])
+    @url.category = @category
+    @category.sum += 1
 
     respond_to do |format|
-      if @url.save
+      if @url.save && @category.save
         format.html { redirect_to @url, notice: 'Url was successfully created.' }
         format.json { render json: @url, status: :created, location: @url }
       else
